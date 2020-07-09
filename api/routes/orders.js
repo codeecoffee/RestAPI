@@ -10,6 +10,14 @@ router.get('/', (req, res, next)=>{
 
 router.post('/', (req, res, next)=>{
   //add product status 201
+  const order ={
+    productId: req.body.productId,
+    quantity: req.body.quantity
+  }
+  res.status(200).json({
+    message: 'You got here!',
+    order: order
+  })
 })
 
 router.get('/:orderId', (req, res, next)=>{
