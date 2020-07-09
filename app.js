@@ -2,8 +2,21 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 const productsRoutes = require('./api/routes/products')
 const ordersRoutes = require('./api/routes/orders')
+
+mongoose
+.connect(
+  'mongodb://localhost:27017/restfulApi',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true, 
+    useFindAndModify: true,
+  }
+)
+.then(()=>console.log('MongoDB Connected'))
+.catch(err=> console.log(err))
 
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: false}))
